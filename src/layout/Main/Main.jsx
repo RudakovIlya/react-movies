@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Movies from "../../components/Movies/Movies";
 import Preloader from "../../components/Preloader/Preloader";
 import Search from "../../components/Search/Search";
+import Filter from "../../components/Filter/Filter";
 
 class Main extends Component {
     state = {
@@ -25,6 +26,7 @@ class Main extends Component {
         return (
             <main className={'container content'}>
                 <Search searchMovies={this.searchMovies}/>
+                <Filter/>
                 {
                     movies?.length ? <Movies movies={movies}/> : <Preloader/>
                 }

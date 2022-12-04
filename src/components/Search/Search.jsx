@@ -34,7 +34,7 @@ class Search extends Component {
                         onChange={this.onChangeSearchHandler}
                         onKeyDown={this.handleKey}
                     />
-                    <button className="waves-effect waves-light btn" onClick={this.onClickHandler}>Search</button>
+                    <button className="btn search-btn blue lighten-1" onClick={this.onClickHandler}>Search</button>
 
                 </div>
             </div>
