@@ -2,23 +2,24 @@ import React, {Component} from 'react';
 import Movies from "../../components/Movies/Movies";
 import Preloader from "../../components/Preloader/Preloader";
 import Search from "../../components/Search/Search";
-import Filter from "../../components/Filter/Filter";
+
 
 class Main extends Component {
+
     state = {
-        movies: [],
+        movies: []
     }
 
     componentDidMount() {
-        fetch('http://www.omdbapi.com/?apikey=1780b93d&s=harry')
+        fetch('http://www.omdbapi.com/?apikey=1780b93d&s=matrix')
             .then(response => response.json())
-            .then(data => this.setState({movies: data.Search}));
+            .then(data => this.setState({movies: data.Search}))
     }
 
     searchMovies = (str) => {
         fetch(`http://www.omdbapi.com/?apikey=1780b93d&s=${str}`)
             .then(response => response.json())
-            .then(data => this.setState({movies: data.Search}));
+            .then(data => this.setState({movies: data.Search}))
     }
 
     render() {
@@ -26,13 +27,12 @@ class Main extends Component {
         return (
             <main className={'container content'}>
                 <Search searchMovies={this.searchMovies}/>
-                <Filter/>
-                {
-                    movies?.length ? <Movies movies={movies}/> : <Preloader/>
-                }
+                {movies.length ? <Movies movies={movies}/> : <Preloader/>}
             </main>
         );
     }
+
+
 };
 
 export default Main;

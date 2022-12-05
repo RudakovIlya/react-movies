@@ -1,23 +1,26 @@
 import React, {Component} from 'react';
 
+
 class Search extends Component {
+
     state = {
-        search: ''
+        search: '',
+    }
+
+    onChangeInputValue = (event) => {
+        this.setState({search: event.currentTarget.value})
+    }
+
+    callback = () => {
+        this.props.searchMovies(this.state.search)
     }
 
     handleKey = (event) => {
         if (event.key === 'Enter') {
-            this.props.searchMovies(this.state.search)
+            this.callback()
         }
-    }
+    };
 
-    onChangeSearchHandler = (event) => {
-        this.setState({search: event.currentTarget.value})
-    }
-
-    onClickHandler = () => {
-        this.props.searchMovies(this.state.search)
-    }
 
     render() {
         const {search} = this.state
@@ -31,15 +34,16 @@ class Search extends Component {
                         id={"email_inline"}
                         type={"search"}
                         className={"validate"}
-                        onChange={this.onChangeSearchHandler}
+                        onChange={this.onChangeInputValue}
                         onKeyDown={this.handleKey}
                     />
-                    <button className="btn search-btn blue lighten-1" onClick={this.onClickHandler}>Search</button>
-
+                    <button className="btn search-btn blue lighten-1" onClick={this.callback}>Search
+                    </button>
                 </div>
             </div>
         )
     }
+
 }
 
 export default Search;

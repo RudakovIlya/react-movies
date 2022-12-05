@@ -8,7 +8,6 @@ const Movies = (props) => {
             <Movie key={movie.imdbID} {...movie}/>
         )
     })
-
     return (
         <div className="movies">
             {movieItem}
