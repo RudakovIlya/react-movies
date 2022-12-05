@@ -19,6 +19,7 @@ const Movie = (props) => {
                 </p>
             </div>
         </div>
+
     );
 };
 
