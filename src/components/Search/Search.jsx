@@ -1,80 +1,82 @@
-import React, {Component} from 'react';
+import React, { useState } from "react";
+import InputLabel from '@mui/material/InputLabel';
+import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import RadioGroup from '@mui/material/RadioGroup';
+import IconButton from '@mui/material/IconButton';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import Radio from '@mui/material/Radio';
+import SearchIcon from '@mui/icons-material/Search';
 
-class Search extends Component {
+const Search = props => {
+    const {
+        searchMovies
+    } = props;
 
-    state = {
-        search: '',
-        type: 'all',
-    }
+    const [search, setSearch] = useState('');
+    const [type, setType] = useState('all');
 
-    onChangeInputValue = (event) => {
-        this.setState({search: event.currentTarget.value})
-    }
-
-    handleFilter = (event) => {
-        this.setState(
-            () => ({type: event.target.value}),
-            () => {
-                this.props.searchMovies(this.state.search, this.state.type);
-            }
-        );
+    const onChangeInputValue = event => {
+        setSearch(event.currentTarget.value);
     };
 
-    handleCallback = () => {
-        this.props.searchMovies(this.state.search, this.state.type);
-    }
+    const handleFilter = event => {
+        setType(event.target.value);
+        searchMovies(search, event.target.value);
+    };
 
-    handleKey = (event) => {
-        if (event.key === 'Enter') {
-            this.handleCallback()
+    const handleCallback = () => {
+        searchMovies(search, type);
+    };
+
+    const handleKey = event => {
+        if (event.key === "Enter") {
+            handleCallback();
         }
     };
 
-    render() {
-        const {search, type} = this.state
-        return (
-            <div className="row">
-                <div className="input-field">
-                    <input
+    return (
+        <div>
+            <Box sx={{ mb: 3 }}>
+                <FormControl sx={{ width: '100%' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password">Search</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
                         value={search}
-                        name={'search'}
-                        placeholder={'search'}
-                        id={"email_inline"}
-                        type={"search"}
-                        className={"validate"}
-                        onChange={this.onChangeInputValue}
-                        onKeyDown={this.handleKey}
+                        onChange={onChangeInputValue}
+                        onKeyDown={handleKey}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    edge="end"
+                                    onClick={handleCallback}
+                                    color="inherit"
+                                >
+                                    <SearchIcon />
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
                     />
-                    <button className="btn search-btn blue lighten-1" onClick={this.handleCallback}>Search
-                    </button>
-                </div>
-                <div className={'row'}>
-                    <p className={'col s4 center'}>
-                        <label>
-                            <input checked={type === 'all'} className='with-gap' name="type" type="radio" value={'all'}
-                                   onChange={this.handleFilter}/>
-                            <span>All</span>
-                        </label>
-                    </p>
-                    <p className={'col s4 center'}>
-                        <label>
-                            <input checked={type === 'movie'} className='with-gap' name="type" type="radio"
-                                   value={'movie'} onChange={this.handleFilter}/>
-                            <span>Movies only</span>
-                        </label>
-                    </p>
-                    <p className={'col s4 center'}>
-                        <label>
-                            <input checked={type === 'series'} className="with-gap" name="type" type="radio"
-                                   value={'series'} onChange={this.handleFilter}/>
-                            <span>Series only</span>
-                        </label>
-                    </p>
-                </div>
-            </div>
-        )
-    }
+                </FormControl>
+            </Box>
+            <RadioGroup
+                sx={{ mb: 3, }}
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+            >
+                <FormControlLabel onChange={handleFilter} checked={type === "all"} value={"all"} control={<Radio color="default" />} label="All" />
 
-}
+                <FormControlLabel onChange={handleFilter} checked={type === "movie"} value={"movie"} control={<Radio color="default" />} label="Movies" />
+
+                <FormControlLabel onChange={handleFilter} checked={type === "series"} value={"series"} control={<Radio color="default" />} label="Series" />
+            </RadioGroup>
+        </div>
+    );
+};
 
 export default Search;

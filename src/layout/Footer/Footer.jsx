@@ -1,15 +1,23 @@
 import React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
 
 const Footer = () => {
     return (
-        <footer className={'page-footer blue lighten-1'}>
-            <div className="footer-copyright">
-                <div className="container">
-                    © {new Date().getFullYear()} Rudakov Ilya
-                    <a className="grey-text text-lighten-4 right" href="#!">Repo</a>
-                </div>
-            </div>
-        </footer>
+        <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+            <Typography variant="h6" align="center" gutterBottom>
+                Created By
+            </Typography>
+            <Typography
+                variant="subtitle1"
+                align="center"
+                color="text.secondary"
+                component="p"
+            >
+                &copy; {new Date().getFullYear()} Rudakov Ilya
+            </Typography>
+        </Box>
     );
 };
 

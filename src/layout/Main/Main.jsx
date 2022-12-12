@@ -1,47 +1,48 @@
-import React, {Component} from 'react';
+import React, { useEffect, useState } from 'react';
 import Movies from "../../components/Movies/Movies";
-import Preloader from "../../components/Preloader/Preloader";
 import Search from "../../components/Search/Search";
-
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-class Main extends Component {
+const Main = () => {
 
-    state = {
-        movies: [],
-        isLoading: true
-    }
+    const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    componentDidMount() {
-        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=matrix`)
-            .then(response => response.json())
-            .then(data => this.setState({movies: data.Search, isLoading: false}))
-            .catch((err) => {
-                console.error(err);
-                this.setState({loading: false});
-            });
-    }
 
-    searchMovies = (str, type) => {
-        this.setState({loading: true});
+    const searchMovies = (str, type) => {
+        setIsLoading(true);
         fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str.trim()}${type !== 'all' ? `&type=${type}` : ''}`)
             .then(response => response.json())
-            .then(data => this.setState({movies: data.Search, isLoading: false}))
+            .then(data => {
+                setIsLoading(false)
+                setMovies(data.Search);
+
+            })
             .catch((err) => {
                 console.error(err);
-                this.setState({loading: false});
+                setIsLoading(false)
             });
     }
 
-    render() {
-        const {movies, isLoading} = this.state;
-        return (
-            <main className={'container content'}>
-                <Search searchMovies={this.searchMovies}/>
-                {isLoading ? <Preloader/> : <Movies movies={movies}/>}
-            </main>
-        );
-    }
+    useEffect(() => {
+        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=matrix`)
+            .then(response => response.json())
+            .then(data => {
+                setMovies(data.Search);
+                setIsLoading(false)
+            })
+            .catch((err) => {
+                console.error(err);
+                setIsLoading(false);
+            });
+    }, [])
+
+    return (
+        <>
+            <Search searchMovies={searchMovies} />
+            {<Movies movies={movies} isLoading={isLoading} />}
+        </ >
+    );
 
 }
 
