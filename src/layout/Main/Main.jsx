@@ -10,7 +10,7 @@ const Main = () => {
 
     const searchMovies = (str, type) => {
         setIsLoading(true);
-        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str.trim()}${type !== 'all' ? `&type=${type}` : ''}`)
+        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str}${type !== 'all' ? `&type=${type}` : ''}`)
             .then(response => response.json())
             .then(data => {
                 setIsLoading(false)
