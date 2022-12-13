@@ -1,7 +1,9 @@
 import React from 'react';
-import { Grid, Paper, Card, CardMedia, CardContent, Typography } from "@mui/material";
+import {Grid, Paper, Card, CardMedia, CardContent, Typography} from "@mui/material";
+import {Image} from 'antd';
+
 const Movie = (props) => {
-    const { Title: title, Year: year, imdbId: id, Type: type, Poster: poster } = props
+    const {Title: title, Year: year, imdbId: id, Type: type, Poster: poster} = props
     return (
 
         <Grid id={id} item xs={1} sm={4} md={4} height={'100%'}>
@@ -15,9 +17,9 @@ const Movie = (props) => {
                         />
 
                         :
-                        <CardMedia
-                            component="img"
-                            image={poster}
+                        <Image
+                            width={'100%'}
+                            src={poster}
                             alt={title}
                         />
                     }

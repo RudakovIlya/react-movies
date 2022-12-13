@@ -8,7 +8,6 @@ const Main = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-
     const searchMovies = (str, type) => {
         setIsLoading(true);
         fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str.trim()}${type !== 'all' ? `&type=${type}` : ''}`)
