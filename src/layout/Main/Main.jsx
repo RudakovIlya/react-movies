@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Movies from "../../components/Movies/Movies";
 import Search from "../../components/Search/Search";
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const Main = () => {
@@ -8,9 +9,10 @@ const Main = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+
     const searchMovies = (str, type) => {
         setIsLoading(true);
-        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str}${type !== 'all' ? `&type=${type}` : ''}`)
+        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str.trim()}${type !== 'all' ? `&type=${type}` : ''}`)
             .then(response => response.json())
             .then(data => {
                 setIsLoading(false)
@@ -24,7 +26,7 @@ const Main = () => {
     }
 
     useEffect(() => {
-        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=matrix`)
+        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=marvel`)
             .then(response => response.json())
             .then(data => {
                 setMovies(data.Search);
@@ -38,11 +40,11 @@ const Main = () => {
 
     return (
         <>
-            <Search searchMovies={searchMovies} />
-            {<Movies movies={movies} isLoading={isLoading} />}
+            <Search searchMovies={searchMovies}/>
+            {<Movies movies={movies} isLoading={isLoading}/>}
         </ >
     );
 
 }
 
-export default Main;
+export default Main

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -11,24 +11,13 @@ import Radio from '@mui/material/Radio';
 import SearchIcon from '@mui/icons-material/Search';
 
 const Search = props => {
+
     const {
         searchMovies
     } = props;
 
     const [search, setSearch] = useState('');
-
     const [type, setType] = useState('all');
-
-    useEffect(() => {
-        const title = localStorage.getItem('movie');
-
-        setSearch(JSON.parse(title));
-        searchMovies(JSON.parse(title), type);
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem('movie', JSON.stringify(search));
-    }, [search])
 
     const onChangeInputValue = event => {
         setSearch(event.currentTarget.value);
