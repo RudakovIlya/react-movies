@@ -1,9 +1,18 @@
 import React from 'react';
-import {Grid, Paper, Card, CardMedia, CardContent, Typography} from "@mui/material";
-import {Image} from 'antd';
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Card from '@mui/material/Card'
+import CardMedia from '@mui/material/CardMedia'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
+import CardActions from '@mui/material/CardActions'
+import Button from "@mui/material/Button";
+import { Image } from 'antd';
+import { NavLink } from "react-router-dom";
 
 const Movie = (props) => {
-    const {Title: title, Year: year, imdbId: id, Type: type, Poster: poster} = props
+    const { Title: title, Year: year, imdbID: id, Type: type, Poster: poster } = props
+
     return (
 
         <Grid id={id} item xs={1} sm={4} md={4} height={'100%'}>
@@ -33,6 +42,11 @@ const Movie = (props) => {
                         <Typography variant="body2" color="text.secondary">
                             Type: {type}
                         </Typography>
+                        <CardActions>
+                            <Button size="small">
+                                <NavLink to={`/${type}/${id}`}>Learn More</NavLink>
+                            </Button>
+                        </CardActions>
                     </CardContent>
                 </Card>
             </Paper>

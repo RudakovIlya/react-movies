@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -40,8 +40,8 @@ const Search = props => {
 
     return (
         <div>
-            <Box sx={{mb: 3}}>
-                <FormControl sx={{width: '100%'}} variant="outlined">
+            <Box sx={{ mb: 3 }}>
+                <FormControl sx={{ width: '100%' }} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Search</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-password"
@@ -56,7 +56,7 @@ const Search = props => {
                                     onClick={handleCallback}
                                     color="inherit"
                                 >
-                                    <SearchIcon/>
+                                    <SearchIcon />
                                 </IconButton>
                             </InputAdornment>
                         }
@@ -65,19 +65,19 @@ const Search = props => {
                 </FormControl>
             </Box>
             <RadioGroup
-                sx={{mb: 3,}}
+                sx={{ mb: 3, }}
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
             >
                 <FormControlLabel onChange={handleFilter} checked={type === "all"} value={"all"}
-                                  control={<Radio color="default"/>} label="All"/>
+                    control={<Radio color="default" />} label="All" />
 
                 <FormControlLabel onChange={handleFilter} checked={type === "movie"} value={"movie"}
-                                  control={<Radio color="default"/>} label="Movies"/>
+                    control={<Radio color="default" />} label="Movies" />
 
                 <FormControlLabel onChange={handleFilter} checked={type === "series"} value={"series"}
-                                  control={<Radio color="default"/>} label="Series"/>
+                    control={<Radio color="default" />} label="Series" />
             </RadioGroup>
         </div>
     );

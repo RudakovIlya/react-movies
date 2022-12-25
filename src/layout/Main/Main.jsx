@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Movies from "../../components/Movies/Movies";
 import Search from "../../components/Search/Search";
 
@@ -37,10 +37,11 @@ const Main = () => {
             });
     }, [])
 
+
     return (
         <>
-            <Search searchMovies={searchMovies}/>
-            {<Movies movies={movies} isLoading={isLoading}/>}
+            <Search searchMovies={searchMovies} />
+            {<Movies movies={movies} isLoading={isLoading} />}
         </ >
     );
 
