@@ -1,4 +1,3 @@
-import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -15,11 +14,11 @@ const Header = () => {
                     edge="start"
                     color="inherit"
                     aria-label="menu"
-                    sx={{ mr: 2 }}
+                    sx={{mr: 2}}
                 >
-                    <MenuIcon />
+                    <MenuIcon/>
                 </IconButton>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                     React Movies
                 </Typography>
                 <Button color="inherit" target={'_blank'} href="https://github.com/RudakovIlya/React-Movies">

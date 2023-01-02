@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC, memo} from 'react';
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Card from '@mui/material/Card'
@@ -7,14 +7,26 @@ import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import CardActions from '@mui/material/CardActions'
 import Button from "@mui/material/Button";
-import { Image } from 'antd';
-import { NavLink } from "react-router-dom";
+import {Image} from 'antd'
+import {NavLink} from "react-router-dom";
 
-const Movie = (props) => {
-    const { Title: title, Year: year, imdbID: id, Type: type, Poster: poster } = props
+export type MovieType = {
+    imdbID: string
+    Title: string
+    Year: string
+    Type: string
+    Poster: string
+}
+
+type MoviePropsType = {
+    movie: MovieType
+}
+
+const Movie: FC<MoviePropsType> = memo(({movie}) => {
+
+    const {Title: title, Year: year, imdbID: id, Type: type, Poster: poster} = movie
 
     return (
-
         <Grid id={id} item xs={1} sm={4} md={4} height={'100%'}>
             <Paper elevation={2}>
                 <Card>
@@ -52,6 +64,6 @@ const Movie = (props) => {
             </Paper>
         </Grid>
     );
-};
+});
 
 export default Movie;

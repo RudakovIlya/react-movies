@@ -1,8 +1,7 @@
-import React from "react";
-import Header from "./layout/Header/Header";
-import Footer from "./layout/Footer/Footer";
-import Main from "./layout/Main/Main";
 import Container from "@mui/material/Container";
+import Header from './layout/Header/Header';
+import Main from "./layout/Main/Main";
+import Footer from "./layout/Footer/Footer";
 
 function App() {
     return (
